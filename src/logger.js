@@ -1,13 +1,5 @@
-import ddTrace from "dd-trace";
 import winston from "winston";
 import { DatadogWinston } from "datadog-winston";
-
-// Initialize dd-trace
-ddTrace.init({
-  // Datadog configuration options
-  // Note: API key should be set via DD_API_KEY environment variable
-  logLevel: "info",
-});
 
 class Logger {
   constructor() {
