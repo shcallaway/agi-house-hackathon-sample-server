@@ -8,9 +8,9 @@ import dotenv from "dotenv";
 
 // Log specific environment variables
 logger.info("Specific environment variables:");
-logger.debug(`PORT: ${process.env.PORT}`);
-logger.debug(`DD_HOSTNAME: ${process.env.DD_HOSTNAME}`);
-logger.debug(`DD_API_KEY: ${process.env.DD_API_KEY}`);
+logger.info(`PORT: ${process.env.PORT}`);
+logger.info(`DD_HOSTNAME: ${process.env.DD_HOSTNAME}`);
+logger.info(`DD_API_KEY: ${process.env.DD_API_KEY}`);
 
 const PORT = process.env.PORT || 3000;
 
