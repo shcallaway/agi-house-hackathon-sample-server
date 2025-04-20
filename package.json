@@ -1,13 +1,19 @@
 {
   "name": "agi-house-hackathon-sample-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sample server with Datadog logging integration",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dd-trace": "^3.32.1",
+    "winston": "^3.11.0",
+    "datadog-winston": "^2.1.2"
+  },
+  "type": "module"
 }
