@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import { logger } from "./logger.js";
 import http from "http";
 import { router } from "./router.js";
