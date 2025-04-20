@@ -4,7 +4,7 @@ import { router } from "./router.js";
 import dotenv from "dotenv";
 
 // Load environment variables from .env file
-dotenv.config();
+// dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
