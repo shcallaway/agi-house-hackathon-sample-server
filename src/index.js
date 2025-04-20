@@ -6,11 +6,11 @@ import dotenv from "dotenv";
 // Load environment variables from .env file
 // dotenv.config();
 
-// Log environment variables
-logger.info("Environment variables:");
-Object.keys(process.env).forEach((key) => {
-  logger.debug(`${key}: ${process.env[key]}`);
-});
+// Log specific environment variables
+logger.info("Specific environment variables:");
+logger.debug(`PORT: ${process.env.PORT}`);
+logger.debug(`DD_HOSTNAME: ${process.env.DD_HOSTNAME}`);
+logger.debug(`DD_API_KEY: ${process.env.DD_API_KEY}`);
 
 const PORT = process.env.PORT || 3000;
 
