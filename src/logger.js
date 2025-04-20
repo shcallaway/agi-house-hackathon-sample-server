@@ -2,7 +2,6 @@ import winston from "winston";
 import DatadogWinston from "datadog-winston";
 
 const DD_API_KEY = process.env.DD_API_KEY;
-const DD_HOSTNAME = process.env.DD_HOSTNAME || "datadoghq.eu";
 const DD_SERVICE =
   process.env.DD_SERVICE || "agi-house-hackathon-sample-server";
 
@@ -16,13 +15,12 @@ class Logger {
       })
     );
 
-    // If Datadog API key and hostname are set, configure Winston with Datadog transport
-    if (DD_API_KEY && DD_HOSTNAME) {
-      this.log("Configuring Datadog log transport");
+    // If Datadog API key is set, configure Datadog transport
+    if (DD_API_KEY) {
+      this.log("Configuring Datadog transport");
 
       const datadogTransport = new DatadogWinston({
         apiKey: DD_API_KEY,
-        hostname: DD_HOSTNAME,
         service: DD_SERVICE,
         intakeRegion: "eu",
         ddsource: "nodejs",

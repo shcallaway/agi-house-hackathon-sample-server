@@ -1,16 +1,9 @@
 import { logger } from "./logger.js";
 import http from "http";
 import { router } from "./router.js";
-import dotenv from "dotenv";
 
 // Load environment variables from .env file
-// dotenv.config();
-
-// Log specific environment variables
-logger.info("Specific environment variables:");
-logger.info(`PORT: ${process.env.PORT}`);
-logger.info(`DD_HOSTNAME: ${process.env.DD_HOSTNAME}`);
-logger.info(`DD_API_KEY: ${process.env.DD_API_KEY}`);
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
