@@ -6,6 +6,12 @@ import dotenv from "dotenv";
 // Load environment variables from .env file
 // dotenv.config();
 
+// Log environment variables
+logger.info("Environment variables:");
+Object.keys(process.env).forEach((key) => {
+  logger.debug(`${key}: ${process.env[key]}`);
+});
+
 const PORT = process.env.PORT || 3000;
 
 // Define routes
