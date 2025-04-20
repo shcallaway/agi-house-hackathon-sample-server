@@ -24,6 +24,7 @@ class Logger {
         apiKey: DD_API_KEY,
         hostname: DD_HOSTNAME,
         service: DD_SERVICE,
+        intakeRegion: "eu",
         ddsource: "nodejs",
       });
 
