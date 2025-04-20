@@ -1,10 +1,7 @@
-import dotenv from "dotenv";
+import "./dotenv.js";
 import http from "http";
-import { logger } from "./logger.js";
 import { router } from "./router.js";
-
-// Load environment variables from .env file
-dotenv.config();
+import { logger } from "./logger.js";
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,14 +18,6 @@ router.get("/", (req, res) => {
 const server = http.createServer((req, res) => {
   router.handle(req, res);
 });
-
-logger.info("Starting server");
-
-if (process.env.RAILWAY_GIT_COMMIT_SHA) {
-  logger.info(`Current commit SHA: ${process.env.RAILWAY_GIT_COMMIT_SHA}`);
-} else {
-  logger.warn("No commit SHA found");
-}
 
 // Start server
 server.listen(PORT, () => {

@@ -2,11 +2,16 @@ import winston from "winston";
 import DatadogWinston from "datadog-winston";
 
 const DD_API_KEY = process.env.DD_API_KEY;
-const DD_SERVICE =
-  process.env.DD_SERVICE || "agi-house-hackathon-sample-server";
+
+const SERVICE = process.env.DD_SERVICE || "agi-house-hackathon-sample-server";
+
+// Get commit SHA from Railway, if available
+const COMMIT_SHA = process.env.RAILWAY_GIT_COMMIT_SHA;
 
 class Logger {
-  constructor() {
+  constructor(context) {
+    this.context = context;
+
     this.w = winston.createLogger();
 
     this.w.add(
@@ -21,7 +26,7 @@ class Logger {
 
       const datadogTransport = new DatadogWinston({
         apiKey: DD_API_KEY,
-        service: DD_SERVICE,
+        service: SERVICE,
         intakeRegion: "eu",
         ddsource: "nodejs",
       });
@@ -34,26 +39,31 @@ class Logger {
     }
   }
 
-  log(message, level = "info") {
-    this.w.log(level, message);
+  log(message, level = "info", attributes = {}) {
+    this.w.log(level, message, {
+      ...this.context,
+      ...attributes,
+    });
   }
 
-  info(message) {
-    this.log(message, "info");
+  info(message, attributes = {}) {
+    this.log(message, "info", attributes);
   }
 
-  warn(message) {
-    this.log(message, "warn");
+  warn(message, attributes = {}) {
+    this.log(message, "warn", attributes);
   }
 
-  error(message) {
-    this.log(message, "error");
+  error(message, attributes = {}) {
+    this.log(message, "error", attributes);
   }
 
-  debug(message) {
-    this.log(message, "debug");
+  debug(message, attributes = {}) {
+    this.log(message, "debug", attributes);
   }
 }
 
-// Export a singleton instance
-export const logger = new Logger();
+export const logger = new Logger({
+  commit: COMMIT_SHA,
+  service: SERVICE,
+});
