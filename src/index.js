@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // Define routes
 router.get("/", (req, res) => {
+  logger.info("Received request to /");
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end(
     "Hello! I am a sample server implemented for the AGI House hackathon.\n"
