@@ -22,6 +22,14 @@ const server = http.createServer((req, res) => {
   router.handle(req, res);
 });
 
+logger.info("Starting server");
+
+if (process.env.RAILWAY_GIT_COMMIT_SHA) {
+  logger.info(`Current commit SHA: ${process.env.RAILWAY_GIT_COMMIT_SHA}`);
+} else {
+  logger.warn("No commit SHA found");
+}
+
 // Start server
 server.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
