@@ -19,14 +19,19 @@ class Logger {
     // If Datadog API key and hostname are set, configure Winston with Datadog transport
     if (DD_API_KEY && DD_HOSTNAME) {
       this.log("Configuring Datadog log transport");
-      this.w.add(
-        new DatadogWinston({
-          apiKey: DD_API_KEY,
-          hostname: DD_HOSTNAME,
-          service: DD_SERVICE,
-          ddsource: "nodejs",
-        })
-      );
+
+      const datadogTransport = new DatadogWinston({
+        apiKey: DD_API_KEY,
+        hostname: DD_HOSTNAME,
+        service: DD_SERVICE,
+        ddsource: "nodejs",
+      });
+
+      datadogTransport.on("error", (error) => {
+        this.log("Datadog transport error:", error);
+      });
+
+      this.w.add(datadogTransport);
     }
   }
 
