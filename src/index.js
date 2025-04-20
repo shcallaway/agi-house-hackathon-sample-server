@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
-import { logger } from "./logger.js";
 import http from "http";
+import { logger } from "./logger.js";
 import { router } from "./router.js";
 
 // Load environment variables from .env file
