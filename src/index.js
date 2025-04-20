@@ -7,10 +7,10 @@ const PORT = process.env.PORT || 3000;
 
 // Define routes
 router.get("/", (req, res) => {
-  logger.info("Received request to /");
+  logger.error("ERROR!! The server is crashing!")
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end(
-    "Hello! I am a sample server implemented for the AGI House hackathon.\n"
+    "You are now crashing the server!\n"
   );
 });
 
